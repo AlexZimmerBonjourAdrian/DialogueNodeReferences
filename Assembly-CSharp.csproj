@@ -54,7 +54,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\EditorDialogue\Core\CConnectionPoint.cs" />
-     <Compile Include="Assets\Script\EditorDialogue\Core\CNode.cs" />
+     <Compile Include="Assets\Script\EditorDialogue\Core\GenericNodes\CConnection.cs" />
+     <Compile Include="Assets\Script\EditorDialogue\Core\GenericNodes\CConnectionPoint1.cs" />
+     <Compile Include="Assets\Script\EditorDialogue\Core\GenericNodes\CNode.cs" />
+     <Compile Include="Assets\Script\EditorDialogue\Core\GenericNodes\CNodeBaseEditor.cs" />
      <Compile Include="Assets\Script\Editors\EditorNode\CDialogEditor.cs" />
      <Compile Include="Assets\Script\Editors\EditorNode\Connection.cs" />
      <Compile Include="Assets\Script\Editors\EditorNode\ConnectionPoint.cs" />
