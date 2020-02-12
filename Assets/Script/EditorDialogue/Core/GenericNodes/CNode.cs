@@ -22,8 +22,8 @@ public class CNode
     {
         rect = new Rect(position.x, position.y, width, height);
         style = nodeStyle;
-        //inPoint = new ConnectionPoint(this, ConnectionPointType.In, inPointStyle, OnClickInPoint);
-       // outPoint = new ConnectionPoint(this, ConnectionPointType.Out, outPointStyle, OnClickOutPoint);
+        inPoint = new CConnectionPoint1(this, CConnectionPointType.In, inPointStyle, OnClickInPoint);
+        outPoint = new CConnectionPoint1(this, CConnectionPointType.Out, outPointStyle, OnClickOutPoint);
         defaultNodeStyle = nodeStyle;
         selectedNodeStyle = selectedStyle;
         OnRemoveNode = OnClickRemoveNode;

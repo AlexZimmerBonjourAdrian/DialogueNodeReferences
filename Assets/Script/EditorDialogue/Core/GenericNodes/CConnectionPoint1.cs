@@ -4,12 +4,16 @@ using UnityEngine;
 using System;
 
 // esto es la clase de control que controla los elementos de donde se conectan
-public enum CConnectionPointType { In,Out}
+public enum CConnectionPointType { In, Out }
+
 public class CConnectionPoint1
 {
     public Rect rect;
+
     public CConnectionPointType type;
+
     public CNode node;
+
     public GUIStyle style;
 
     public Action<CConnectionPoint1> OnClickConnectionPoint;
@@ -22,10 +26,11 @@ public class CConnectionPoint1
         this.OnClickConnectionPoint = OnClickConnectionPoint;
         rect = new Rect(0, 0, 10f, 20f);
     }
-    
+
     public void Draw()
     {
         rect.y = node.rect.y + (node.rect.height * 0.5f) - rect.height * 0.5f;
+
         switch (type)
         {
             case CConnectionPointType.In:
@@ -33,18 +38,18 @@ public class CConnectionPoint1
                 break;
 
             case CConnectionPointType.Out:
-                rect.x = node.rect.x - node.rect.width + 8f;
+                rect.x = node.rect.x + node.rect.width - 8f;
                 break;
         }
-        if(GUI.Button(rect, "" , style))
+
+        if (GUI.Button(rect, "", style))
         {
-            if(OnClickConnectionPoint != null)
+            if (OnClickConnectionPoint != null)
             {
                 OnClickConnectionPoint(this);
             }
         }
     }
-    
-    // Start is called before the first frame update
-   
 }
+
+
