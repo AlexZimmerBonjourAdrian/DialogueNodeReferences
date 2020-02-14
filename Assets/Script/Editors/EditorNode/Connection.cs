@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Connection
 {
+    /*
     public ConnectionPoint inPoint;
     public ConnectionPoint outPoint;
     public Action<Connection> OnClickRemoveConnection;
@@ -36,5 +37,6 @@ public class Connection
             }
         }
     }
+    */
 }
 

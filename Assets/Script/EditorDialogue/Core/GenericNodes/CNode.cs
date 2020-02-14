@@ -1,7 +1,107 @@
 ﻿using System;
 using UnityEditor;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+namespace DNECore {
+    public class CNode
+    {
+        public Rect rect;
+        public string title;
+        public bool isDragged;
+        public bool isSelected;
 
+        public CConnectionPoint1 inPoint;
+        public CConnectionPoint1 outPoint;
+
+        public GUIStyle style;
+        public GUIStyle defaultNodeStyle;
+        public GUIStyle selectedNodeStyle;
+
+        public Action<CNode> OnRemoveNode;
+
+
+        public CNode(Vector2 position)
+        {
+           
+        }
+    
+
+    public void Drag(Vector2 delta)
+    {
+        rect.position += delta;
+    }
+
+    public void Draw()
+    {
+        inPoint.Draw();
+        outPoint.Draw();
+        GUI.Box(rect, title, style);
+    }
+
+    public bool ProcessEvents(Event e)
+    {
+        switch (e.type)
+        {
+            case EventType.MouseDown:
+                if (e.button == 0)
+                {
+                    if (rect.Contains(e.mousePosition))
+                    {
+                        isDragged = true;
+                        GUI.changed = true;
+                        isSelected = true;
+                        style = selectedNodeStyle;
+                    }
+                    else
+                    {
+                        GUI.changed = true;
+                        isSelected = false;
+                        style = defaultNodeStyle;
+                    }
+                }
+
+                if (e.button == 1 && isSelected && rect.Contains(e.mousePosition))
+                {
+                    ProcessContextMenu();
+                    e.Use();
+                }
+                break;
+
+            case EventType.MouseUp:
+                isDragged = false;
+                break;
+
+            case EventType.MouseDrag:
+                if (e.button == 0 && isDragged)
+                {
+                    Drag(e.delta);
+                    e.Use();
+                    return true;
+                }
+                break;
+        }
+
+        return false;
+    }
+
+    private void ProcessContextMenu()
+    {
+        GenericMenu genericMenu = new GenericMenu();
+        genericMenu.AddItem(new GUIContent("Remove node"), false, OnClickRemoveNode);
+        genericMenu.ShowAsContext();
+    }
+
+    private void OnClickRemoveNode()
+    {
+        if (OnRemoveNode != null)
+        {
+            OnRemoveNode(this);
+        }
+    }
+}
+}
+/*
 public class CNode
 {
     public Rect rect;
@@ -103,3 +203,4 @@ public class CNode
     }
 }
 
+*/

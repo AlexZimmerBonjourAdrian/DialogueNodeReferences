@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class CNodeBasedEditor : EditorWindow
 {
+    /*
     private List<CNode> nodes;
     private List<CConnection> connections;
 
@@ -358,5 +359,5 @@ public class CNodeBasedEditor : EditorWindow
         Handles.color = Color.white;
         Handles.EndGUI();
     }
-
+    */
 }
